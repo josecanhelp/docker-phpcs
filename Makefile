@@ -9,7 +9,7 @@ CURRENT_PHP_VERSION =
 
 DIR = .
 FILE = Dockerfile
-IMAGE = cytopia/phpcs
+IMAGE = tighten/phpcs
 TAG = latest
 
 PHP   = latest
@@ -17,14 +17,14 @@ PHPCS = latest
 
 build:
 ifeq ($(PHP),latest)
-	docker build --build-arg PHP=7-cli-alpine --build-arg PHPCS=$(PHPCS) -t $(IMAGE) -f $(DIR)/$(FILE) $(DIR)
+	docker build --build-arg PHP=8-cli-alpine --build-arg PHPCS=$(PHPCS) -t $(IMAGE) -f $(DIR)/$(FILE) $(DIR)
 else
 	docker build --build-arg PHP=$(PHP)-cli-alpine --build-arg PHPCS=$(PHPCS) -t $(IMAGE) -f $(DIR)/$(FILE) $(DIR)
 endif
 
 rebuild: pull
 ifeq ($(PHP),latest)
-	docker build --no-cache --build-arg PHP=7-cli-alpine --build-arg PHPCS=$(PHPCS) -t $(IMAGE) -f $(DIR)/$(FILE) $(DIR)
+	docker build --no-cache --build-arg PHP=8-cli-alpine --build-arg PHPCS=$(PHPCS) -t $(IMAGE) -f $(DIR)/$(FILE) $(DIR)
 else
 	docker build --no-cache --build-arg PHP=$(PHP)-cli-alpine --build-arg PHPCS=$(PHPCS) -t $(IMAGE) -f $(DIR)/$(FILE) $(DIR)
 endif

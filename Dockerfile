@@ -1,5 +1,5 @@
 ARG PHP
-FROM php:7.3 as builder
+FROM php:8 as builder
 
 # Install build dependencies
 RUN set -eux \
@@ -25,8 +25,8 @@ RUN set -eux \
 
 FROM php:${PHP} as production
 LABEL \
-	maintainer="cytopia <cytopia@everythingcli.org>" \
-	repo="https://github.com/cytopia/docker-phpcs"
+	maintainer="Jose Soto <josecanhelp@gmail.com>" \
+	repo="https://github.com/josecanhelp/docker-phpcs"
 
 COPY --from=builder /usr/bin/phpcs /usr/bin/phpcs
 ENV WORKDIR /data
